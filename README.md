@@ -7,6 +7,18 @@ source <(curl https://raw.githubusercontent.com/oursky/git-travis-change/master/
 git travis-change andoird ./script/test-android.sh
 ```
 
+## Example travis.yml
+
+```
+before_install:
+  - curl https://raw.githubusercontent.com/oursky/git-travis-change/master/install | bash
+script:
+  - git travis-change backend script/build-backend.sh
+```
+
+Note: in Travis-CI osx image, source will fails. So it assume all script are
+run at default path, that why git will find git-travis-change
+
 # Objective of the script
 
 When we have multiple project in same repo and use travis matrix to build for
