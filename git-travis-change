@@ -12,10 +12,10 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
         echo "No code changes, skipped script"
         exit 0
     fi
-    ${@:2}
+    "${@:2}"
 fi
 
 if [[ -z "${TRAVIS_PULL_REQUEST}" ]]; then
   echo "Not a PR, running the script"
-  ${@:2}
+  "${@:2}"
 fi
