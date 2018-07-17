@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+curl -O https://raw.githubusercontent.com/oursky/git-travis-change/master/git-travis-change
+chmod +x git-travis-change
+export PATH=$PATH:$PWD
