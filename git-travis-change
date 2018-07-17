@@ -2,18 +2,6 @@
 
 set -e
 
-if [[ -z "${TRAVIS_PULL_REQUEST}" ]]; then
-  echo "! Enironmnet variable TRAVIS_PULL_REQUEST does not exist"
-  echo "! Exit now"
-  exit 1
-fi
-
-if [[ -z "${TRAVIS_COMMIT_RANGE}" ]]; then
-  echo "! Enironmnet variable TRAVIS_PULL_REQUEST does not exist"
-  echo "! Exit now"
-  exit 1
-fi
-
 CHECK_PATH=$1'/'
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
@@ -21,9 +9,13 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
     echo "Checking changes since ${TRAVIS_COMMIT_RANGE} against ${CHECK_PATH}"
     GITDIFF=`git diff --name-only ${TRAVIS_COMMIT_RANGE} | grep ${CHECK_PATH} | tr -d '[:space:]'`
     if [ "$GITDIFF" == "" ]; then
-        echo "No code changes, skipped test"
+        echo "No code changes, skipped script"
         exit 0
     fi
     ${@:2}
 fi
 
+if [[ -z "${TRAVIS_PULL_REQUEST}" ]]; then
+  echo "Not a PR, running the script"
+  ${@:2}
+fi
