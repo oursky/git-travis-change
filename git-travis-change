@@ -13,9 +13,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
         exit 0
     fi
     "${@:2}"
-fi
-
-if [[ -z "${TRAVIS_PULL_REQUEST}" ]]; then
+else
   echo "Not a PR, running the script"
   "${@:2}"
 fi
