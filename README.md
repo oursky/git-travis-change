@@ -4,7 +4,7 @@
 
 ```
 source <(curl https://raw.githubusercontent.com/oursky/git-travis-change/master/install)
-git travis-change andoird ./script/test-android.sh
+git travis-change android ./script/test-android.sh
 ```
 
 ## Example travis.yml
